@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esfuerzo docente</title>
+    <style>
+
+        :root{
+            --white: #FFFFFF;
+            --black: #000000;
+            --very-light-pink:#C7C7C7;
+            --text-input-field: #F7F7F7;
+            --effort-cyan: #BBDEFB;  
+            --effort-cyan-dark: #89abc6;
+            --effort-cyan-light: #edffff;
+            --complentary-color: #fbbd8c;
+            --complentary-dark-color: #c97b63;
+            --sm: 14px;
+            --md: 16px;
+            --lg: 18px;
+        }
+        body {
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+        body{
+            background-color: var(--effort-cyan-light);            
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+                        
+        }
+        header {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        header img {
+           
+            width: 70px;
+            height: 70px;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            margin: 8px;
+        }
+        .section {
+            background-color: var(--effort-cyan);
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 8px;
+            margin: 4px;
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .section form {
+                        
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            
+        }
+
+        .label {
+            font-size: var(--sm);
+            font-weight: bold;
+            margin-bottom: 4px;
+
+        }
+        .input {
+            background-color: var(--text-input-field);
+            border: none;
+            border-radius: 8px;
+            height: 30px;
+            font-size: var(--md);
+            padding: 6px;
+            margin-bottom: 12px;
+        }
+
+        .section label, .section input, .section button{
+            width: 90%;
+            margin: 2px;
+        }
+
+        .editIcon, .deleteIcon {
+            width: 15px;
+            height: 15px;
+            
+        }
+        .activity-added {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .primary-button {
+            background-color: var(--complentary-color);
+            
+            border-radius: 8px;
+            border: none;
+            color: var(--);
+            width: 100%;
+            cursor: pointer;
+            font-size: var(--md);
+            font-weight: bold;
+            height: 50px;
+        }
+        .primary-button:hover{
+            background-color: var(--complentary-dark-color);
+        }
+        .icon-button{
+            width: 16px;
+            height: 25px;
+            margin-left: 4px;
+            border: none;
+            background: none;
+        }
+        .icon-button img {
+            width: 10px;
+            height: 10px;
+        }
+        .edit-icon{
+            
+            
+        }
+        .delete-icon{
+           
+        }
+        .button-update, .index-activity, .id-activity, .p-alert{
+            display: none;
+            
+        }
+
+        .alert-p{
+            display: none;
+            color: red;
+        }
+
+        .info-activity{
+            
+        }
+        .alert-name-activity{
+            
+        }
+        
+
+        
+        
+        
+
+
+        @media (max-width:640px){
+            .container{
+                flex-direction: column;
+                align-items: center;
+            }
+            .section{
+                width: 70%;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+
+        <img src="https://www.4me.com/wp-content/uploads/2018/01/4me-icon-time-entry1.png" alt="">
+
+        <h1>
+            
+            Instrumento de ingreso de Información de Docentes
+
+        </h1>
+        
+    </header>
+
+    <div class="container">
+
+        <div class="section">
+            <h2 id="title_activity">Registro de actividades</h2>
+            <p class="index-activity" id="index_activity"></p>
+            <p class="id-activity" id="id_activity"></p>
+            <form action="" id ="1" name="f1" class="info-form-alerts">
+                <label for="name_activity" class="label">Actividad: *</label>
+                <input type="text" class="input info-activity" name="name_activity" id="name_activity"  placeholder="Ingresa nombre de actividad"> 
+                <p class="alert-p" id="alert-name-activity">Ingrese la actividad</p>
+                <label for="time_activity" class="label">Tiempo dedicado en horas: *</label>
+                <input type="number" class="input" name="time_activity" id="time_activity"  placeholder="Ingresa el tiempo">
+                <p class="alert-p" id="alert-time-activity">Ingresa la duración</p>
+                <label for="date_activity" class="label">Fecha: *</label>
+                <input type="week" class="input" name="date_activity" id="date_activity"  >
+                <p class="alert-p" id="alert-date-activity">Selecciona la fecha</p>
+                <button type="button" name="button_register" class="primary-button" id="button_register" onclick="onClickButtonRegisterActivity()">Registrar actividad</button>
+                <button type="button" name="button_register" class="button-update primary-button" id="button_update" onclick="onClickButtonUpdateActivity()">Actualizar actividad</button>
+                <button type="button" name="button_register" class="button-update primary-button" id="button_cancel" onclick="onClickButtonCancelUpdateActivity()">Cancelar</button>
+                
+            </form>
+            <p class="p-alert" id="p-alert"></p>
+             
+        </div>
+
+        <div class="section">
+            <h2>Resumen de actividades</h2>
+                       
+            <p id="total_hours">Total de horas reportadas: 0</p>
+            
+            <p id="total_weeks">Total de semanas reportadas: 0</p>
+            
+            <p id="prom_week_hours">Promedio de horas trabajadas por semana: 0 </p>
+            
+            <p id="most_worked_week">Semana más laborada: 0 </p>
+
+
+
+    
+        </div>
+
+        <div    class="section">
+            <h2>Actividades registradas</h2>
+            <ul id="added_acitivities">
+                
+            </ul>
+        </div>
+    
+       
+
+    </div>
+    
+    <p>Esta herramienta permitirá llevar el control de tiempo
+        en actividades realizadas por docentes para un próximo estudio.
+        Próximamente se implementarán gráficas para que sea más 
+        facil de resumir la información. Puedes usarla para llevar control de tiempo ;)
+    </p>
+
+    <script src="./analisis.js" ></script>
+</body>
+</html>
